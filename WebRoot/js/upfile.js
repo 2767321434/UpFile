@@ -30,7 +30,7 @@ function UploadFile(id, file){
                 f_input.value = null;
                 f_input.click();
                 //f_input.onchange = addfile;
-                f_input.oninput = addfile; 
+                
             }
             
             function addfile(evt){
@@ -47,7 +47,7 @@ function UploadFile(id, file){
                     var targetDiv = document.getElementById(targetDIV_id);
                     targetDiv.appendChild(div);
                     targetDiv.getElementsByTagName("SPAN")[1].innerHTML="文件名:"+f.name;
-                    //waittimer = setInterval("upload()", 1000);
+                    waittimer = setInterval("upload()", 1000);
                     
                     
                 }
