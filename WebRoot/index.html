@@ -6,10 +6,10 @@
 		<link rel="stylesheet" type="text/css" href="css/upfile.css">
 		<script type="text/javascript" src="js/upfile.js" charset="utf-8"></script>
     </head>
-    <body onload="init()">
+    <body>
         <a href="javascript:addOne()">添加</a>
         <div id="target">
-            <input type="file" id="file" name="file" multiple/>
+            <input type="file" id="file" name="file" onchange="addfile(event)" multiple/>
         </div>
     </body>
 </html>

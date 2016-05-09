@@ -4,8 +4,8 @@ function UploadFile(id, file){
                 this.state = 0;
             }
             
-            var html = '<div class="pborder"><div class="pro">' +
-            '<span class="pspan">0%</span></div></div><span name="path"></span><img src="css/del.png" style="float:left;" width="20" height="20" name="del" onclick=abortUpload(this)>';
+            var html = '<div class="pborder"><div class="drawpro">' +
+            '<span class="pspan">0%</span></div></div><span name="path"></span><img src="css/del.png" style="float:right" width="20" height="20" name="del" onclick=abortUpload(this)>';
             
             var targetDIV_id = "target";
             var httpXML = null;
@@ -20,8 +20,8 @@ function UploadFile(id, file){
             var timer, waittimer;
             var nowID = 0;
             var ID = 0;
-            
-            function init(){
+           
+            window.onload=function init(){
                 f_input = document.getElementById("file");
                 
             }
@@ -29,7 +29,8 @@ function UploadFile(id, file){
             function addOne(){
                 f_input.value = null;
                 f_input.click();
-                f_input.onchange = addfile;             
+                //f_input.onchange = addfile;
+                f_input.oninput = addfile; 
             }
             
             function addfile(evt){
@@ -39,12 +40,14 @@ function UploadFile(id, file){
                     var uf = new UploadFile(ID, f);
                     uplist.push(uf);                  
                     var div = document.createElement("DIV");                    
-                    div.setAttribute("id", "pro" + (ID));                    
+                    div.setAttribute("id", "pro" + (ID));
+                    div.setAttribute("class","pro");
                     ID++;
                     div.innerHTML = html;
                     var targetDiv = document.getElementById(targetDIV_id);
                     targetDiv.appendChild(div);
-                    waittimer = setInterval("upload()", 1000);
+                    targetDiv.getElementsByTagName("SPAN")[1].innerHTML="文件名:"+f.name;
+                    //waittimer = setInterval("upload()", 1000);
                     
                     
                 }
@@ -135,10 +138,10 @@ function UploadFile(id, file){
                     if (state == "OK") {
                         prodiv.getElementsByTagName("DIV")[0].style.display = "none";
                         prodiv.getElementsByTagName("IMG")[0].style.display = "none";
+                        //prodiv.getElementsByTagName("SPAN")[1].innerHTML = path;
                         var tmpf=uplist[nowID].file;
                         var size=formatFileSize(tmpf.size);
                         prodiv.getElementsByTagName("SPAN")[1].innerHTML = "文件名:"+tmpf.name+" ---- 文件大小:"+size;
-                        //prodiv.getElementsByTagName("SPAN")[1].innerHTML = path;
                         window.clearInterval(timer);
                         filelist.push(path);
                         alert("上传成功！" + path);
@@ -172,7 +175,6 @@ function UploadFile(id, file){
                 }
                 
             }
-            
             function formatFileSize(bytes) {
                 if (typeof bytes !== 'number') {
                     return '';

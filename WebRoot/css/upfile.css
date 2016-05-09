@@ -1,16 +1,18 @@
             #file {
                 display: none;
             }
-            
+            .pro{
+            	width:500px;
+            }
             .pborder {
-                float: left;
+                float:left;
                 position: relative;
                 width: 500px; /* 宽度 */
                 border: 1px solid #B1D632;
                 padding: 1px;
             }
             
-            .pro {
+            .drawpro {
                 width: 0px;
                 display: block;
                 position: relative;
